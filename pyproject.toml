@@ -2,6 +2,7 @@
 name = "aws-account"
 version = "0.1.1"
 authors = ["M. Rollwagen <rollwagen@gmail.com>"]
+license = "Apache-2.0"
 repository = "https://github.com/rollwagen/aws-account"
 description = "Print out AWS account and identity information to verify which account/organization is currently in use."
 
