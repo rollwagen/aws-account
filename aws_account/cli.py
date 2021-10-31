@@ -76,7 +76,8 @@ class AWSIdentity(NamedTuple):
 @click.option("--version", is_flag=True, help="Print version number.")
 @click.option("--debug", is_flag=True, help="Enable debug output.")
 def main(version: bool, debug: bool):
-    """A tool to print out AWS account and identity information to verify which account/organization is currently in use."""
+    """A tool to print out AWS account and identity information to verify
+    which account/organization is currently in use."""
     global log
     log = _init_logger()
     if version:
@@ -95,6 +96,7 @@ def main(version: bool, debug: bool):
 
         log.debug(f"{identity=}")
 
+        account = None
         if identity.is_assumed_role():
             log.debug("getting access token")
             token = _get_access_token()
