@@ -1,5 +1,13 @@
+# General
+tmp/
+.DS_Store
+
 # PyCharm config / project file
 .idea
+
+# Poetry
+dist/
+poetry.lock
 
 # typings created by botostub
 typings/
