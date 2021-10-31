@@ -19,10 +19,12 @@ __version__ = "0.1"
 
 log: Logger = None
 
+
 class AWSAccount(NamedTuple):
     id: str
     name: str
     email: str
+
 
 class AWSIdentity(NamedTuple):
     class Type(Enum):
@@ -66,12 +68,17 @@ class AWSIdentity(NamedTuple):
         return self.type == self.Type.IAM
 
     def is_assumed_role(self):
-        return self.type == self.Type.ASSUMED_ROLE
+        _is_assumed_role = self.type == self.Type.ASSUMED_ROLE
+        return _is_assumed_role
 
 
 @click.command()
 @click.option("--version", is_flag=True, help="Print version number.")
-def main(version: bool):
+@click.option("--debug", is_flag=True, help="Enable debug output.")
+def main(version: bool, debug: bool):
+    """A tool to print out AWS account and identity information to verify which account/organization is currently in use."""
+    global log
+    log = _init_logger()
     if version:
         print(f"Version: {__version__}")
         exit(0)
@@ -79,7 +86,7 @@ def main(version: bool):
     try:
         session = botocore.session.get_session()
         caller_identity = session.create_client("sts").get_caller_identity()
-        log.debug(f"get_call_identity() response: {caller_identity}")
+        # log.debug(f"get_call_identity() response: {caller_identity}")
         identity = AWSIdentity(
             account=caller_identity["Account"],
             user_id=caller_identity["UserId"],
@@ -89,13 +96,20 @@ def main(version: bool):
         log.debug(f"{identity=}")
 
         if identity.is_assumed_role():
+            log.debug("getting access token")
             token = _get_access_token()
-            account_list = session.create_client("sso").list_accounts(accessToken=token)["accountList"]
-            account_item = next(a for a in account_list if a["accountId"] == identity.account)
-            log.debug(f'{account_item=}')
-            account = AWSAccount(id=account_item["accountId"], name=account_item["accountName"], email=account_item["emailAddress"])
-        else:
-            account = None
+            account_list = session.create_client("sso").list_accounts(
+                accessToken=token
+            )["accountList"]
+            account_item = next(
+                a for a in account_list if a["accountId"] == identity.account
+            )
+            log.debug(f"{account_item=}")
+            account = AWSAccount(
+                id=account_item["accountId"],
+                name=account_item["accountName"],
+                email=account_item["emailAddress"],
+            )
 
     except Exception as exception:
         log.error(exception)
@@ -105,16 +119,18 @@ def main(version: bool):
 
 
 def _get_access_token() -> str:
-    # aws sso  list-accounts --access-token $(cat $(ls -1d ~/.aws/sso/cache/* | grep -v botocore) |  jq -r "{accessToken} | .[]")
     aws_sso_cache_dir = os.path.expanduser("~/.aws/sso/cache")
+    log.debug(f"_get_access_token: {aws_sso_cache_dir=}")
     try:
-        cache_file = [f for f in os.listdir(aws_sso_cache_dir) if not f.startswith("botocore-")][0]
-        cache_filepath = f'{aws_sso_cache_dir}/{cache_file}'
+        cache_file = [
+            f for f in os.listdir(aws_sso_cache_dir) if not f.startswith("botocore-")
+        ][0]
+        cache_filepath = f"{aws_sso_cache_dir}/{cache_file}"
         with open(cache_filepath, "r") as token_cache_file:
             token_json = json.loads(token_cache_file.read())
 
         access_token = token_json["accessToken"]
-        log.debug(f'accessToken = {access_token[0:9]}...')
+        log.debug(f"accessToken = {access_token[0:9]}...")
         return access_token
     except Exception as exception:
         log.error(exception)
@@ -122,7 +138,7 @@ def _get_access_token() -> str:
     return None
 
 
-def _print_identity_info(identity: AWSIdentity, account: AWSAccount=None) -> None:
+def _print_identity_info(identity: AWSIdentity, account: AWSAccount = None) -> None:
     COLOR_KEY = Fore.BLUE
     COLOR_VALUE = Fore.GREEN
     WIDTH_VALUE = 15
@@ -141,8 +157,7 @@ def _print_identity_info(identity: AWSIdentity, account: AWSAccount=None) -> Non
         print(_color(_type_key_str, "Assumed Role (sts)"))
 
 
-
-def _init_logger() -> Logger:
+def _init_logger(debug_level: bool = False) -> Logger:
     class CustomFormatter(Formatter):
         grey = "\x1b[38;21m"
         yellow = "\x1b[33;21m"
@@ -168,7 +183,10 @@ def _init_logger() -> Logger:
             return formatter.format(record)
 
     logger = logging.getLogger("aws-account")
-    logger.setLevel(logging.DEBUG)
+    if debug_level:
+        logger.setLevel(logging.DEBUG)
+    else:
+        logger.setLevel(logging.WARN)
 
     # create console handler with a higher log level
     ch = logging.StreamHandler()
@@ -179,5 +197,4 @@ def _init_logger() -> Logger:
 
 
 if __name__ == "__main__":
-    log = _init_logger()
     main()
