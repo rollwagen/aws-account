@@ -79,7 +79,7 @@ def main(version: bool, debug: bool):
     """A tool to print out AWS account and identity information to verify
     which account/organization is currently in use."""
     global log
-    log = _init_logger()
+    log = _init_logger(debug)
     if version:
         print(f"Version: {__version__}")
         exit(0)
