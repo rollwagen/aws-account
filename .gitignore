@@ -1,3 +1,9 @@
+# PyCharm config / project file
+.idea
+
+# typings created by botostub
+typings/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
