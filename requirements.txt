@@ -1,0 +1,6 @@
+botocore
+boto3
+botocore-stubs
+boto3-stubs
+boto3-stubs[essential, sts]
+mypy_boto3_builder
