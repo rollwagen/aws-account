@@ -166,10 +166,13 @@ def _init_logger(debug_level: bool = False) -> Logger:
         red = "\x1b[31;21m"
         bold_red = "\x1b[31;1m"
         reset = "\x1b[0m"
-        format = (
-            "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-            + " (%(filename)s:%(lineno)d)"
-        )
+        if debug_level:
+            format = (
+                "%(asctime)s - %(name)s - %(levelname)s"
+                + " - %(message)s (%(filename)s:%(lineno)d)"
+            )
+        else:
+            format = "%(levelname)s - %(message)s"
 
         FORMATS = {
             logging.DEBUG: grey + format + reset,
