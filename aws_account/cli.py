@@ -87,7 +87,7 @@ def main(version: bool, debug: bool):
     try:
         session = botocore.session.get_session()
         caller_identity = session.create_client("sts").get_caller_identity()
-        # log.debug(f"get_call_identity() response: {caller_identity}")
+        log.debug(f"get_call_identity() response: {caller_identity}")
         identity = AWSIdentity(
             account=caller_identity["Account"],
             user_id=caller_identity["UserId"],
