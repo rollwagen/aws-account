@@ -31,7 +31,7 @@ jobs:
                   python -m pip install --upgrade pip
                   pip install -r requirements.txt
             - name: Check Formatting (black)
-              run: black --line-length 120 aws_account
+              run: black --line-length 90 aws_account
             - name: Lint (flake8)
               run: |
-                flake8 aws_account
+                flake8 --max-line-length 90 aws_account
