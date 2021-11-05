@@ -1,4 +1,4 @@
-name: Format and Lint Python
+name: Python Linting
 on:
     push:
         paths:

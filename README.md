@@ -1,5 +1,8 @@
 # aws-account
 
+![CodeQL Action](https://github.com/rollwagen/aws-account/actions/workflows/codeql-analysis.yml/badge.svg)
+![Python Lint Action](https://github.com/rollwagen/aws-account/actions/workflows/lint-python.yml/badge.svg)
+
 A tool to print out AWS account and identity information to verify
 which account/organization is currently in use.
 
