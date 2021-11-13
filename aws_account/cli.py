@@ -2,6 +2,7 @@ import logging
 from logging import Logger, Formatter
 
 import os
+import string
 
 from typing import NamedTuple
 from enum import Enum
@@ -130,7 +131,7 @@ def _get_access_token() -> str:
 
     try:
         cache_file = [
-            f for f in os.listdir(aws_sso_cache_dir) if not f.startswith("botocore-")
+            f for f in os.listdir(aws_sso_cache_dir) if f[0].isdigit()
         ][0]
         cache_filepath = f"{aws_sso_cache_dir}/{cache_file}"
         log.debug(f"{cache_filepath=}")
