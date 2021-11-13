@@ -129,9 +129,7 @@ def _get_access_token() -> str:
     log.debug(f"_get_access_token: {aws_sso_cache_dir=}")
 
     try:
-        cache_file = [
-            f for f in os.listdir(aws_sso_cache_dir) if not f.startswith("botocore-")
-        ][0]
+        cache_file = [f for f in os.listdir(aws_sso_cache_dir) if f[0].isdigit()][0]
         cache_filepath = f"{aws_sso_cache_dir}/{cache_file}"
         log.debug(f"{cache_filepath=}")
         with open(cache_filepath, "r") as token_cache_file:
