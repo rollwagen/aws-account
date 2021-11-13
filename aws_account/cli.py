@@ -33,7 +33,7 @@ class AWSIdentity(NamedTuple):
             arn:aws:sts::123456789012:assumed-role/my-role-name/my-role-session-name
             arn:aws:sts::123456789012:federated-user/my-federated-user-name
         For further details see AWS documentation at
-            <https://docs.aws.amazon.com/STS/latest/APIReference/API_GetCallerIdentity.html>
+        <https://docs.aws.amazon.com/STS/latest/APIReference/API_GetCallerIdentity.html>
         """
 
         IAM = 1
@@ -121,13 +121,19 @@ def main(version: bool, debug: bool):
 
 
 def _get_access_token() -> str:
+    global log
+    if not log:
+        log = _init_logger(debug_level=True)
+
     aws_sso_cache_dir = os.path.expanduser("~/.aws/sso/cache")
     log.debug(f"_get_access_token: {aws_sso_cache_dir=}")
+
     try:
         cache_file = [
             f for f in os.listdir(aws_sso_cache_dir) if not f.startswith("botocore-")
         ][0]
         cache_filepath = f"{aws_sso_cache_dir}/{cache_file}"
+        log.debug(f"{cache_filepath=}")
         with open(cache_filepath, "r") as token_cache_file:
             token_json = json.loads(token_cache_file.read())
 
