@@ -1,21 +1,16 @@
-import logging
-from logging import Logger, Formatter
-
-import os
-
-from typing import NamedTuple
-from enum import Enum
-
-import click
+import importlib.metadata
 import json
-
-from colorama import Fore
+import logging
+import os
+from enum import Enum
+from logging import Formatter, Logger
+from typing import NamedTuple
 
 import botocore
-import botocore.session
 import botocore.exceptions
-
-__version__ = "0.1"
+import botocore.session
+import click
+from colorama import Fore
 
 log: Logger = None
 
@@ -81,7 +76,7 @@ def main(version: bool, debug: bool):
     global log
     log = _init_logger(debug)
     if version:
-        print(f"Version: {__version__}")
+        print(f'Version: {importlib.metadata.version("aws-account")}')
         exit(0)
 
     try:
@@ -123,7 +118,7 @@ def main(version: bool, debug: bool):
 def _get_access_token() -> str:
     global log
     if not log:
-        log = _init_logger(debug_level=True)
+        log = _init_logger(debug_level=False)
 
     aws_sso_cache_dir = os.path.expanduser("~/.aws/sso/cache")
     log.debug(f"_get_access_token: {aws_sso_cache_dir=}")
