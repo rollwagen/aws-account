@@ -7,7 +7,6 @@ tmp/
 
 # Poetry
 dist/
-poetry.lock
 
 # typings created by botostub
 typings/
