@@ -1,7 +1,7 @@
-from aws_account.cli import AWSIdentity, AWSAccount, _get_access_token
-
 from unittest import mock
 from unittest.mock import patch
+
+from aws_account.cli import AWSAccount, AWSIdentity, _get_access_token
 
 
 def test_awsaccount_basic():
@@ -20,7 +20,7 @@ def test_awsidentity_with_iamuser():
 
     assert identity.is_iam()
     assert identity.is_assumed_role() is False
-    assert identity.type == AWSIdentity.Type.IAM
+    assert identity.type == AWSIdentity.CallerIdentityType.IAM
 
 
 @patch(

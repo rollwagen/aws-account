@@ -22,7 +22,7 @@ class AWSAccount(NamedTuple):
 
 
 class AWSIdentity(NamedTuple):
-    class Type(Enum):
+    class CallerIdentityType(Enum):
         """An identity can have one of the following types:
             arn:aws:iam::123456789012:user/Alice
             arn:aws:sts::123456789012:assumed-role/my-role-name/my-role-session-name
@@ -40,9 +40,25 @@ class AWSIdentity(NamedTuple):
     arn: str
 
     _type_mapping = {
-        "user": Type.IAM,
-        "assumed-role": Type.ASSUMED_ROLE,
-        "federated-user": Type.FEDERATED_USER,
+        "user": CallerIdentityType.IAM,
+        "assumed-role": CallerIdentityType.ASSUMED_ROLE,
+        "federated-user": CallerIdentityType.FEDERATED_USER,
+    }
+
+    # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids
+    _iam_unique_prefixes = {
+        "ABIA": "AWS STS service bearer token",
+        "ACCA": "Context-specific credential",
+        "AGPA": "User group",
+        "AIDA": "IAM user",
+        "AIPA": "Amazon EC2 instance profile",
+        "AKIA": "Access key",
+        "ANPA": "Managed policy",
+        "ANVA": "Version in a managed policy",
+        "APKA": "Public key",
+        "AROA": "Role",
+        "ASCA": "Certificate",
+        "ASIA": "Temporary (AWS STS) access key",
     }
 
     @property
@@ -60,10 +76,10 @@ class AWSIdentity(NamedTuple):
         return self.arn.split(":")[-1].split("/")[-1]
 
     def is_iam(self):
-        return self.type == self.Type.IAM
+        return self.type == self.CallerIdentityType.IAM
 
     def is_assumed_role(self):
-        _is_assumed_role = self.type == self.Type.ASSUMED_ROLE
+        _is_assumed_role = self.type == self.CallerIdentityType.ASSUMED_ROLE
         return _is_assumed_role
 
 
@@ -81,6 +97,7 @@ def main(version: bool, debug: bool):
 
     try:
         session = botocore.session.get_session()
+        print(f"{session.get_credentials().access_key=}")
         caller_identity = session.create_client("sts").get_caller_identity()
         log.debug(f"get_call_identity() response: {caller_identity}")
         identity = AWSIdentity(
@@ -150,9 +167,9 @@ def _print_identity_info(identity: AWSIdentity, account: AWSAccount = None) -> N
     print(_color("Identity:", identity.user_name))
     print(_color("Account:", identity.account))
     _type_key_str = "Type:"
-    if identity.type is AWSIdentity.Type.IAM:
+    if identity.type is AWSIdentity.CallerIdentityType.IAM:
         print(_color(_type_key_str, "IAM User"))
-    elif identity.type is AWSIdentity.Type.ASSUMED_ROLE:
+    elif identity.type is AWSIdentity.CallerIdentityType.ASSUMED_ROLE:
         if account:
             print(_color("Account Name:", account.name))
         print(_color(_type_key_str, "Assumed Role (sts)"))
