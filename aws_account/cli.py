@@ -22,7 +22,12 @@ class AWSAccount(NamedTuple):
 
 
 class AWSIdentity(NamedTuple):
-    class CallerIdentityType(Enum):
+
+    user_id: str
+    account: str
+    arn: str
+
+    class CallerIdentityType(Enum):  # type: ignore
         """An identity can have one of the following types:
             arn:aws:iam::123456789012:user/Alice
             arn:aws:sts::123456789012:assumed-role/my-role-name/my-role-session-name
@@ -35,18 +40,14 @@ class AWSIdentity(NamedTuple):
         ASSUMED_ROLE = 2
         FEDERATED_USER = 3
 
-    user_id: str
-    account: str
-    arn: str
-
-    _type_mapping = {
+    type_mapping: dict = {
         "user": CallerIdentityType.IAM,
         "assumed-role": CallerIdentityType.ASSUMED_ROLE,
         "federated-user": CallerIdentityType.FEDERATED_USER,
     }
 
     # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids
-    _iam_unique_prefixes = {
+    iam_unique_prefixes: dict = {
         "ABIA": "AWS STS service bearer token",
         "ACCA": "Context-specific credential",
         "AGPA": "User group",
@@ -66,10 +67,10 @@ class AWSIdentity(NamedTuple):
         return self.account_name
 
     @property
-    def type(self) -> int:
+    def type(self) -> CallerIdentityType:
         # type = self.arn.split(":")[2]
         type = self.arn.split(":")[5].split("/")[0]
-        return self._type_mapping[type]
+        return self.type_mapping[type]
 
     @property
     def user_name(self):
@@ -98,7 +99,8 @@ def main(version: bool, debug: bool):
     try:
         session = botocore.session.get_session()
         print(f"{session.get_credentials().access_key=}")
-        caller_identity = session.create_client("sts").get_caller_identity()
+        sts = session.create_client("sts")
+        caller_identity = sts.get_caller_identity()  # type: ignore
         log.debug(f"get_call_identity() response: {caller_identity}")
         identity = AWSIdentity(
             account=caller_identity["Account"],
@@ -112,7 +114,7 @@ def main(version: bool, debug: bool):
         if identity.is_assumed_role():
             log.debug("getting access token")
             token = _get_access_token()
-            account_list = session.create_client("sso").list_accounts(
+            account_list = session.create_client("sso").list_accounts(  # type: ignore
                 accessToken=token
             )["accountList"]
             account_item = next(
@@ -153,7 +155,7 @@ def _get_access_token() -> str:
     except Exception as exception:
         log.error(exception)
 
-    return None
+    return ""
 
 
 def _print_identity_info(identity: AWSIdentity, account: AWSAccount = None) -> None:
