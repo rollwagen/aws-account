@@ -7,6 +7,7 @@ boto3-stubs
 boto3-stubs[essential, sts]
 mypy_boto3_builder
 pytest
+moto[botocore,boto3]
 flake8
 black
 mypy
