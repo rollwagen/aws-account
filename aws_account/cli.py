@@ -12,7 +12,7 @@ import botocore.session
 import click
 from colorama import Fore
 
-log: Logger = None
+log: Logger = None  # type: ignore
 
 
 class AWSAccount(NamedTuple):
@@ -182,20 +182,21 @@ def _init_logger(debug_level: bool = False) -> Logger:
         red = "\x1b[31;21m"
         bold_red = "\x1b[31;1m"
         reset = "\x1b[0m"
+        output_format: str = ""
         if debug_level:
-            format = (
+            output_format = (
                 "%(asctime)s - %(name)s - %(levelname)s"
                 + " - %(message)s (%(filename)s:%(lineno)d)"
             )
         else:
-            format = "%(levelname)s - %(message)s"
+            output_format = "%(levelname)s - %(message)s"
 
         FORMATS = {
-            logging.DEBUG: grey + format + reset,
-            logging.INFO: grey + format + reset,
-            logging.WARNING: yellow + format + reset,
-            logging.ERROR: red + format + reset,
-            logging.CRITICAL: bold_red + format + reset,
+            logging.DEBUG: grey + output_format + reset,
+            logging.INFO: grey + output_format + reset,
+            logging.WARNING: yellow + output_format + reset,
+            logging.ERROR: red + output_format + reset,
+            logging.CRITICAL: bold_red + output_format + reset,
         }
 
         def format(self, record):
