@@ -22,7 +22,6 @@ class AWSAccount(NamedTuple):
 
 
 class AWSIdentity(NamedTuple):
-
     user_id: str
     account: str
     arn: str
@@ -98,7 +97,7 @@ def main(version: bool, debug: bool):
 
     try:
         session = botocore.session.get_session()
-        print(f"{session.get_credentials().access_key=}")
+        log.debug(f"{session.get_credentials().access_key=}")
         sts = session.create_client("sts")
         caller_identity = sts.get_caller_identity()  # type: ignore
         log.debug(f"get_call_identity() response: {caller_identity}")
@@ -112,7 +111,6 @@ def main(version: bool, debug: bool):
 
         account = None
         if identity.is_assumed_role():
-            log.debug("getting access token")
             token = _get_access_token()
             account_list = session.create_client("sso").list_accounts(  # type: ignore
                 accessToken=token
@@ -126,6 +124,10 @@ def main(version: bool, debug: bool):
                 name=account_item["accountName"],
                 email=account_item["emailAddress"],
             )
+        elif identity.is_iam():
+            iam = session.create_client("iam")
+            account_alias = iam.list_account_aliases()["AccountAliases"][0]
+            account = AWSAccount(id=identity.account, name=account_alias, email="")
 
     except Exception as exception:
         log.error(exception)
@@ -138,6 +140,7 @@ def _get_access_token() -> str:
     global log
     if not log:
         log = _init_logger(debug_level=False)
+    log.debug("_get_access_token() function")
 
     aws_sso_cache_dir = os.path.expanduser("~/.aws/sso/cache")
     log.debug(f"_get_access_token: {aws_sso_cache_dir=}")
@@ -167,13 +170,11 @@ def _print_identity_info(identity: AWSIdentity, account: AWSAccount = None) -> N
         return f"{COLOR_KEY}{name:<{WIDTH_VALUE}}{COLOR_VALUE}{value}"
 
     print(_color("Identity:", identity.user_name))
-    print(_color("Account:", identity.account))
+    print(_color("Account:", f"{identity.account} ({account.name})"))
     _type_key_str = "Type:"
     if identity.type is AWSIdentity.CallerIdentityType.IAM:
         print(_color(_type_key_str, "IAM User"))
     elif identity.type is AWSIdentity.CallerIdentityType.ASSUMED_ROLE:
-        if account:
-            print(_color("Account Name:", account.name))
         print(_color(_type_key_str, "Assumed Role (sts)"))
 
 
