@@ -112,12 +112,11 @@ def main(version: bool, debug: bool):
         account = None
         if identity.is_assumed_role():
             token = _get_access_token()
-            account_list = session.create_client("sso").list_accounts(  # type: ignore
-                accessToken=token
-            )["accountList"]
-            account_item = next(
-                a for a in account_list if a["accountId"] == identity.account
-            )
+            account_list = session.create_client(
+                "sso").list_accounts(  # type: ignore
+                    accessToken=token)["accountList"]
+            account_item = next(a for a in account_list
+                                if a["accountId"] == identity.account)
             log.debug(f"{account_item=}")
             account = AWSAccount(
                 id=account_item["accountId"],
@@ -127,7 +126,9 @@ def main(version: bool, debug: bool):
         elif identity.is_iam():
             iam = session.create_client("iam")
             account_alias = iam.list_account_aliases()["AccountAliases"][0]
-            account = AWSAccount(id=identity.account, name=account_alias, email="")
+            account = AWSAccount(id=identity.account,
+                                 name=account_alias,
+                                 email="")
 
     except Exception as exception:
         log.error(exception)
@@ -146,7 +147,9 @@ def _get_access_token() -> str:
     log.debug(f"_get_access_token: {aws_sso_cache_dir=}")
 
     try:
-        cache_file = [f for f in os.listdir(aws_sso_cache_dir) if f[0].isdigit()][0]
+        cache_file = [
+            f for f in os.listdir(aws_sso_cache_dir) if f[0].isdigit()
+        ][0]
         cache_filepath = f"{aws_sso_cache_dir}/{cache_file}"
         log.debug(f"{cache_filepath=}")
         with open(cache_filepath, "r") as token_cache_file:
@@ -161,7 +164,8 @@ def _get_access_token() -> str:
     return ""
 
 
-def _print_identity_info(identity: AWSIdentity, account: AWSAccount = None) -> None:
+def _print_identity_info(identity: AWSIdentity,
+                         account: AWSAccount = None) -> None:
     COLOR_KEY = Fore.BLUE
     COLOR_VALUE = Fore.GREEN
     WIDTH_VALUE = 15
@@ -179,6 +183,7 @@ def _print_identity_info(identity: AWSIdentity, account: AWSAccount = None) -> N
 
 
 def _init_logger(debug_level: bool = False) -> Logger:
+
     class CustomFormatter(Formatter):
         grey = "\x1b[38;21m"
         yellow = "\x1b[33;21m"
@@ -187,10 +192,8 @@ def _init_logger(debug_level: bool = False) -> Logger:
         reset = "\x1b[0m"
         output_format: str = ""
         if debug_level:
-            output_format = (
-                "%(asctime)s - %(name)s - %(levelname)s"
-                + " - %(message)s (%(filename)s:%(lineno)d)"
-            )
+            output_format = ("%(asctime)s - %(name)s - %(levelname)s" +
+                             " - %(message)s (%(filename)s:%(lineno)d)")
         else:
             output_format = "%(levelname)s - %(message)s"
 
