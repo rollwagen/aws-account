@@ -11,3 +11,4 @@ flake8
 black
 mypy
 yapf
+click

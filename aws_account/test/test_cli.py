@@ -26,9 +26,9 @@ def test_awsidentity_with_iamuser():
 @patch(
     "builtins.open",
     new_callable=mock.mock_open,
-    read_data='{"startUrl": "https://a123.awsapps.com/start", '
-    + '"region": "eu-central-1", "accessToken": "pzFA3BZ0s7Q4xHGv", '
-    + '"expiresAt": "2021-11-09T02:58:40Z"}',
+    read_data='{"startUrl": "https://a123.awsapps.com/start", ' +
+    '"region": "eu-central-1", "accessToken": "pzFA3BZ0s7Q4xHGv", ' +
+    '"expiresAt": "2021-11-09T02:58:40Z"}',
 )
 @patch(
     "os.listdir",
@@ -40,7 +40,9 @@ def test_awsidentity_with_iamuser():
 )
 @patch("os.path.expanduser", return_value="/Users/test/.aws/sso/cache")
 def test_get_access_token(expanduser, listdir, builtins_open):
+
     class FileValidator(object):
+
         def __init__(
             self, validator
         ):  # validator=function taking a single argument and returns a bool.
