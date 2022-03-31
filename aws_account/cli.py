@@ -134,10 +134,18 @@ def main(version: bool, debug: bool):
                                  name=account_alias,
                                  email="")
 
+    # except UnauthorizedException as exception:
+    except botocore.exceptions.ClientError as error:
+        if error.response['Error']['Code'] == 'UnauthorizedException':
+            log.warning(
+                "SSO session token not found or invalid. "
+                "Couldn't query aliases. Use 'aws sso login' to login.")
     except Exception as exception:
         log.error(exception)
         exit(1)
 
+    log.debug(f'get_call_identity() {identity=} {account=}')
+    log.debug(f'get_call_identity() {account=}')
     _print_identity_info(identity=identity, account=account)
 
 
@@ -159,7 +167,7 @@ def _get_access_token() -> str:
             token_json = json.loads(token_cache_file.read())
 
         access_token = token_json["accessToken"]
-        log.debug(f"accessToken = {access_token[0:9]}...")
+        log.debug(f"accessToken = {access_token[0:5]}...{access_token[-5:]}")
         return access_token
     except Exception as exception:
         log.info("Could not get access token from SSO cache.")
@@ -177,8 +185,9 @@ def _print_identity_info(identity: AWSIdentity,
     def _color(name: str, value: str) -> str:
         return f"{COLOR_KEY}{name:<{WIDTH_VALUE}}{COLOR_VALUE}{value}"
 
+    account_name = f'({account.name})' if account else ""
     print(_color("Identity:", identity.user_name))
-    print(_color("Account:", f"{identity.account} ({account.name})"))
+    print(_color("Account:", f"{identity.account} {account_name}"))
     _type_key_str = "Type:"
     if identity.type is AWSIdentity.CallerIdentityType.IAM:
         print(_color(_type_key_str, "IAM User"))
