@@ -134,12 +134,15 @@ def main(version: bool, debug: bool):
                                  name=account_alias,
                                  email="")
 
-    # except UnauthorizedException as exception:
     except botocore.exceptions.ClientError as error:
-        if error.response['Error']['Code'] == 'UnauthorizedException':
+        error_code = error.response['Error']['Code']
+        if error_code == 'UnauthorizedException':
             log.warning(
                 "SSO session token not found or invalid. "
                 "Couldn't query aliases. Use 'aws sso login' to login.")
+        elif error_code == 'ExpiredToken':
+            log.error("The AWS security token is expired. Exiting.")
+            exit(0)
     except Exception as exception:
         log.error(exception)
         exit(1)
