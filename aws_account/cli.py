@@ -4,7 +4,7 @@ import logging
 import os
 from enum import Enum
 from logging import Formatter, Logger
-from typing import NamedTuple
+from typing import Final, NamedTuple, Optional
 
 import botocore
 import botocore.exceptions
@@ -95,6 +95,8 @@ def main(version: bool, debug: bool):
         print(f'Version: {importlib.metadata.version("aws-account")}')
         exit(0)
 
+    identity: AWSIdentity
+    account: AWSAccount
     try:
         session = botocore.session.get_session()
         log.debug(f"{session.get_credentials().access_key=}")
@@ -109,7 +111,6 @@ def main(version: bool, debug: bool):
 
         log.debug(f"{identity=}")
 
-        account = None
         if identity.is_assumed_role():
 
             # in case not logged in via 'aws sso login',
@@ -180,13 +181,13 @@ def _get_access_token() -> str:
 
 
 def _print_identity_info(identity: AWSIdentity,
-                         account: AWSAccount = None) -> None:
-    COLOR_KEY = Fore.BLUE
-    COLOR_VALUE = Fore.GREEN
-    WIDTH_VALUE = 15
+                         account: Optional[AWSAccount] = None) -> None:
+    color_key: Final = Fore.BLUE
+    color_value: Final = Fore.GREEN
+    width_value: Final = 15
 
     def _color(name: str, value: str) -> str:
-        return f"{COLOR_KEY}{name:<{WIDTH_VALUE}}{COLOR_VALUE}{value}"
+        return f"{color_key}{name:<{width_value}}{color_value}{value}"
 
     account_name = f'({account.name})' if account else ""
     print(_color("Identity:", identity.user_name))
