@@ -415,7 +415,7 @@ crt = ["awscrt (==0.13.8)"]
 
 [[package]]
 name = "botocore-stubs"
-version = "1.25.5"
+version = "1.25.5.post1"
 description = "Type annotations for botocore 1.25.5 generated with mypy-boto3-builder 7.5.9"
 category = "dev"
 optional = false
@@ -1045,8 +1045,8 @@ botocore = [
     {file = "botocore-1.25.5-py3-none-any.whl", hash = "sha256:bcbacc0ec0a1f44cbf7e6d8112af8096eed41bec75e90af06f8bf61f20d820aa"},
 ]
 botocore-stubs = [
-    {file = "botocore-stubs-1.25.5.tar.gz", hash = "sha256:31c2d6a015b028f297139141323ee3dcb19261d72bd2ab9c8b6bc88787eda0b6"},
-    {file = "botocore_stubs-1.25.5-py3-none-any.whl", hash = "sha256:312b9f0cfcc0bbc0d006d030cd57ebfe0c6756fbf5f82808bb26b769258d7b5e"},
+    {file = "botocore-stubs-1.25.5.post1.tar.gz", hash = "sha256:2c09364671853d34bf2fe6dfe85d6830c21d89cf6d036f34626f82607420fe38"},
+    {file = "botocore_stubs-1.25.5.post1-py3-none-any.whl", hash = "sha256:473b1d8d670aba504de8f9b5c55b5c0ad0b705c05ec94978ec00b3a89c017019"},
 ]
 click = [
     {file = "click-8.1.3-py3-none-any.whl", hash = "sha256:bb4d8133cb15a609f44e8213d9b391b0809795062913b383c62be0ee95b1db48"},
