@@ -33,6 +33,6 @@ repos:
         name: isort (python)
 
   - repo: https://github.com/trailofbits/pip-audit
-    rev: HEAD
+    rev: v2.2.0
     hooks:
       - id: pip-audit
