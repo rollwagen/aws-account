@@ -1,7 +1,6 @@
 {
   "site_package_search_strategy": "pep561",
   "source_directories": [
-    "aws_account"
-  ],
-  "taint_models_path": "/Users/rollwagen/.local/pipx/venvs/pyre-check/lib/pyre_check/taint"
+    "."
+  ]
 }

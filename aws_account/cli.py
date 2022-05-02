@@ -10,7 +10,11 @@ import botocore
 import botocore.exceptions
 import botocore.session
 import click
+from botocore.session import Session
 from colorama import Fore
+from mypy_boto3_iam.client import IAMClient
+from mypy_boto3_sso.client import SSOClient
+from mypy_boto3_sts.client import STSClient
 
 log: Logger = None  # type: ignore
 
@@ -98,10 +102,11 @@ def main(version: bool, debug: bool):
     identity: AWSIdentity
     account: AWSAccount
     try:
-        session = botocore.session.get_session()
+        session: Session = botocore.session.get_session()
         log.debug(f"{session.get_credentials().access_key=}")
-        sts = session.create_client("sts")
-        caller_identity = sts.get_caller_identity()  # type: ignore
+        # noinspection PyTypeChecker
+        sts: STSClient = session.create_client("sts")  # pyre-ignore[9]
+        caller_identity = sts.get_caller_identity()
         log.debug(f"get_call_identity() response: {caller_identity}")
         identity = AWSIdentity(
             account=caller_identity["Account"],
@@ -116,7 +121,9 @@ def main(version: bool, debug: bool):
             # in case not logged in via 'aws sso login',
             # no sso token will be present
             if token := _get_access_token():
-                sso_client = session.create_client("sso")
+                # noinspection PyTypeChecker
+                sso_client: SSOClient = session.create_client(
+                    "sso")  # pyre-ignore[9]
                 account_list = sso_client.list_accounts(
                     accessToken=token)["accountList"]  # type: ignore
                 account_item = next(a for a in account_list
@@ -129,7 +136,8 @@ def main(version: bool, debug: bool):
                 )
 
         elif identity.is_iam():
-            iam = session.create_client("iam")
+            # noinspection PyTypeChecker
+            iam: IAMClient = session.create_client("iam")  # pyre-ignore[9]
             account_alias = iam.list_account_aliases()["AccountAliases"][0]
             account = AWSAccount(id=identity.account,
                                  name=account_alias,
@@ -148,8 +156,8 @@ def main(version: bool, debug: bool):
         log.error(exception)
         exit(1)
 
+    # noinspection PyUnboundLocalVariable
     log.debug(f'get_call_identity() {identity=} {account=}')
-    log.debug(f'get_call_identity() {account=}')
     _print_identity_info(identity=identity, account=account)
 
 

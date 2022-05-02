@@ -26,12 +26,15 @@ jobs:
                   architecture: 'x64'
             - name: List current working dir (debug)
               run: ls -la
-            - name: Install Python Dependencies
+            - name: Install Python Dependencies (poetry)
               run: |
                   python -m pip install --upgrade pip
-                  pip install -r requirements.txt
+                  curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+                  source $HOME/.poetry/env
+                  poetry install
             # - name: Check Formatting (black)
             #   run: black --line-length 90 aws_account
             - name: Lint (flake8)
               run: |
-                flake8 --max-line-length 90 aws_account
+                source $HOME/.poetry/env
+                poetry run flake8 --max-line-length 90 aws_account
