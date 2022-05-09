@@ -16,7 +16,7 @@ boto3 = "<=1.22.4"
 colorama = ">=0.4"
 mypy-boto3-sts = "<=1.22.4"
 mypy-boto3-sso = "<=1.22.4"
-mypy-boto3-iam = "<=1.22.4"
+mypy-boto3-iam = "<1.22.9"
 
 [tool.poetry.dev-dependencies]
 yapf = "*"

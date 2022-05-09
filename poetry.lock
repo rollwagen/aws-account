@@ -604,8 +604,8 @@ typing-extensions = ">=4.1.0"
 
 [[package]]
 name = "mypy-boto3-iam"
-version = "1.22.0.post1"
-description = "Type annotations for boto3.IAM 1.22.0 service generated with mypy-boto3-builder 7.5.9"
+version = "1.22.8"
+description = "Type annotations for boto3.IAM 1.22.8 service generated with mypy-boto3-builder 7.5.12"
 category = "main"
 optional = false
 python-versions = ">=3.6"
@@ -993,7 +993,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<4"
-content-hash = "91e3a30d188b1f65506c15109fb7db673872967c1420a29f41db9e9e8e6667b7"
+content-hash = "dfa35a5f4f36b5945d956fb73b71002f769fee4998194bd7dc9f1ac52f668904"
 
 [metadata.files]
 async-generator = [
@@ -1043,6 +1043,7 @@ boto3-stubs = [
 ]
 botocore = [
     {file = "botocore-1.25.5-py3-none-any.whl", hash = "sha256:bcbacc0ec0a1f44cbf7e6d8112af8096eed41bec75e90af06f8bf61f20d820aa"},
+    {file = "botocore-1.25.5.tar.gz", hash = "sha256:9f2f143fe8581eb9c43c0934b7daf706067afa409171a80b103f458977fcfbd4"},
 ]
 botocore-stubs = [
     {file = "botocore-stubs-1.25.5.tar.gz", hash = "sha256:31c2d6a015b028f297139141323ee3dcb19261d72bd2ab9c8b6bc88787eda0b6"},
@@ -1156,8 +1157,8 @@ mypy-boto3-ec2 = [
     {file = "mypy_boto3_ec2-1.22.3-py3-none-any.whl", hash = "sha256:222344fae64de370de7edb925a578c1480ceef5b6d8894b734c1c51b791d6136"},
 ]
 mypy-boto3-iam = [
-    {file = "mypy-boto3-iam-1.22.0.post1.tar.gz", hash = "sha256:c3b0cb64d5dce508c10fcb183b56a1075900aaa112a3598b0edd2345fb01e3f4"},
-    {file = "mypy_boto3_iam-1.22.0.post1-py3-none-any.whl", hash = "sha256:fc9c33b9e4a6e1fa818f92ecb02ed21607994f3e568ac7a01304855dd55a0535"},
+    {file = "mypy-boto3-iam-1.22.8.tar.gz", hash = "sha256:ec4742be9e829c8acfaceae12f58d144be960a6565237c1764bf38dfc527e147"},
+    {file = "mypy_boto3_iam-1.22.8-py3-none-any.whl", hash = "sha256:179f7f6802265af10ec120c0d9e35a717c21e3d8d7f1a91baf5a4df3a26ec4f7"},
 ]
 mypy-boto3-lambda = [
     {file = "mypy-boto3-lambda-1.22.0.post1.tar.gz", hash = "sha256:0bb6aee8a5ed8a17607134d70c5dadd3bd12ef892883ece23fa58ea13262c187"},
