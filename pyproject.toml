@@ -23,7 +23,7 @@ yapf = "*"
 toml = "*"
 types-colorama = "*"
 botocore-stubs = "*"
-boto3-stubs = {extras = ["essential", "sts", "sso", "iam"], version = "<=1.22.10"}
+boto3-stubs = {extras = ["essential", "sts", "sso", "iam"], version = "<1.22.14"}
 pytest = "*"
 flake8 = "*"
 black = "*"
