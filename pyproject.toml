@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "aws-account"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["M. Rollwagen <rollwagen@gmail.com>"]
 license = "Apache-2.0"
 repository = "https://github.com/rollwagen/aws-account"
