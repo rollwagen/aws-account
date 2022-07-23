@@ -33,8 +33,8 @@ jobs:
                   source $HOME/.poetry/env
                   poetry install
             # - name: Check Formatting (black)
-            #   run: black --line-length 90 aws_account
+            #   run: black --line-length 120 aws_account
             - name: Lint (flake8)
               run: |
                 source $HOME/.poetry/env
-                poetry run flake8 --max-line-length 90 aws_account
+                poetry run flake8 --max-line-length 120 aws_account

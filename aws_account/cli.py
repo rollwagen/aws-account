@@ -2,6 +2,7 @@ import importlib.metadata
 import json
 import logging
 import os
+import sys
 from enum import Enum
 from logging import Formatter, Logger
 from typing import Final, NamedTuple, Optional
@@ -100,7 +101,7 @@ def main(version: bool, debug: bool):
         exit(0)
 
     identity: AWSIdentity
-    account: AWSAccount
+    account: AWSAccount = None
     try:
         session: Session = botocore.session.get_session()
         log.debug(f"{session.get_credentials().access_key=}")
@@ -122,12 +123,9 @@ def main(version: bool, debug: bool):
             # no sso token will be present
             if token := _get_access_token():
                 # noinspection PyTypeChecker
-                sso_client: SSOClient = session.create_client(
-                    "sso")  # pyre-ignore[9]
-                account_list = sso_client.list_accounts(
-                    accessToken=token)["accountList"]  # type: ignore
-                account_item = next(a for a in account_list
-                                    if a["accountId"] == identity.account)
+                sso_client: SSOClient = session.create_client("sso")  # pyre-ignore[9]
+                account_list = sso_client.list_accounts(accessToken=token)["accountList"]  # type: ignore
+                account_item = next(a for a in account_list if a["accountId"] == identity.account)
                 log.debug(f"{account_item=}")
                 account = AWSAccount(
                     id=account_item["accountId"],
@@ -139,24 +137,23 @@ def main(version: bool, debug: bool):
             # noinspection PyTypeChecker
             iam: IAMClient = session.create_client("iam")  # pyre-ignore[9]
             account_alias = iam.list_account_aliases()["AccountAliases"][0]
-            account = AWSAccount(id=identity.account,
-                                 name=account_alias,
-                                 email="")
+            account = AWSAccount(id=identity.account, name=account_alias, email="")
 
     except botocore.exceptions.ClientError as error:
         error_code = error.response['Error']['Code']
         if error_code == 'UnauthorizedException':
-            log.warning(
-                "SSO session token not found or invalid. "
-                "Couldn't query aliases. Use 'aws sso login' to login.")
+            log.warning("SSO session token not found or invalid (UnauthorizedException). "
+                        "Couldn't query aliases. Use 'aws sso login' to login.")
+            if not account:
+                log.error(error)
+                sys.exit(1)
         elif error_code == 'ExpiredToken':
             log.error("The AWS security token is expired. Exiting.")
-            exit(0)
+            sys.exit(1)
     except Exception as exception:
         log.error(exception)
-        exit(1)
+        sys.exit(1)
 
-    # noinspection PyUnboundLocalVariable
     log.debug(f'get_call_identity() {identity=} {account=}')
     _print_identity_info(identity=identity, account=account)
 
