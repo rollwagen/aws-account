@@ -415,14 +415,14 @@ crt = ["awscrt (==0.13.8)"]
 
 [[package]]
 name = "botocore-stubs"
-version = "1.27.35"
-description = "Type annotations for botocore 1.27.35 generated with mypy-boto3-builder 7.9.2"
+version = "1.27.47"
+description = "Type annotations and code completion for botocore"
 category = "dev"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7,<4.0"
 
 [package.dependencies]
-typing-extensions = ">=4.1.0"
+types-awscrt = "*"
 
 [[package]]
 name = "click"
@@ -942,6 +942,14 @@ doc = ["sphinx-rtd-theme", "sphinx-autodoc-typehints (>=1.2.0)"]
 test = ["pytest", "typing-extensions", "mypy"]
 
 [[package]]
+name = "types-awscrt"
+version = "0.13.14"
+description = "Type annotations and code completion for awscrt"
+category = "dev"
+optional = false
+python-versions = ">=3.7,<4.0"
+
+[[package]]
 name = "types-colorama"
 version = "0.4.15"
 description = "Typing stubs for colorama"
@@ -1045,8 +1053,8 @@ botocore = [
     {file = "botocore-1.27.35.tar.gz", hash = "sha256:d2e708dd766b21c8e20a57ce1a90e98d324f871f81215efbc2dddaa42d13c551"},
 ]
 botocore-stubs = [
-    {file = "botocore-stubs-1.27.35.tar.gz", hash = "sha256:f72eb8cffd3324d8279e4f9c19185bc3be1afc7c131505591a77b16c2a54f8a6"},
-    {file = "botocore_stubs-1.27.35-py3-none-any.whl", hash = "sha256:c98065c52ad52f08036dbd74c35c1d54a966e4d8d9c989abab9dae1e99f6a885"},
+    {file = "botocore-stubs-1.27.47.tar.gz", hash = "sha256:378a35618d8abbcdc23436139d8315f9ac23db5a76a85d99458a52cb964b09ff"},
+    {file = "botocore_stubs-1.27.47-py3-none-any.whl", hash = "sha256:1eeff6c16d9d06a9c2afe5538c7c12a59f305915427a5d778d5217df92ff7480"},
 ]
 click = [
     {file = "click-8.1.3-py3-none-any.whl", hash = "sha256:bb4d8133cb15a609f44e8213d9b391b0809795062913b383c62be0ee95b1db48"},
@@ -1335,6 +1343,10 @@ tomli = [
 typeguard = [
     {file = "typeguard-2.13.3-py3-none-any.whl", hash = "sha256:5e3e3be01e887e7eafae5af63d1f36c849aaa94e3a0112097312aabfa16284f1"},
     {file = "typeguard-2.13.3.tar.gz", hash = "sha256:00edaa8da3a133674796cf5ea87d9f4b4c367d77476e185e80251cc13dfbb8c4"},
+]
+types-awscrt = [
+    {file = "types-awscrt-0.13.14.tar.gz", hash = "sha256:39a69df579036fa5c390c5721a9470cb8a34e1dc216c38198f83e42d5c62f3be"},
+    {file = "types_awscrt-0.13.14-py3-none-any.whl", hash = "sha256:786b99c86833bede6e848ef91d274c0ea97caad8c5fba9d9f61c05564ad56633"},
 ]
 types-colorama = [
     {file = "types-colorama-0.4.15.tar.gz", hash = "sha256:fd128b1e32f3fecec5f09df4366d21498ee86ea31fcf8b4e8f1ade6d0bbf9832"},
