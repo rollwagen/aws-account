@@ -45,21 +45,21 @@ tomli = {version = ">=1.1.0", markers = "python_full_version < \"3.11.0a7\""}
 typing-extensions = {version = ">=3.10.0.0", markers = "python_version < \"3.10\""}
 
 [package.extras]
-uvloop = ["uvloop (>=0.15.2)"]
-jupyter = ["tokenize-rt (>=3.2.0)", "ipython (>=7.8.0)"]
-d = ["aiohttp (>=3.7.4)"]
 colorama = ["colorama (>=0.4.3)"]
+d = ["aiohttp (>=3.7.4)"]
+jupyter = ["ipython (>=7.8.0)", "tokenize-rt (>=3.2.0)"]
+uvloop = ["uvloop (>=0.15.2)"]
 
 [[package]]
 name = "boto3"
-version = "1.24.52"
+version = "1.24.57"
 description = "The AWS SDK for Python"
 category = "main"
 optional = false
 python-versions = ">= 3.7"
 
 [package.dependencies]
-botocore = ">=1.27.52,<1.28.0"
+botocore = ">=1.27.57,<1.28.0"
 jmespath = ">=0.7.1,<2.0.0"
 s3transfer = ">=0.6.0,<0.7.0"
 
@@ -399,7 +399,7 @@ xray = ["mypy-boto3-xray (>=1.22.0,<1.23.0)"]
 
 [[package]]
 name = "botocore"
-version = "1.27.52"
+version = "1.27.57"
 description = "Low-level, data-driven core of boto 3."
 category = "main"
 optional = false
@@ -513,7 +513,7 @@ typing-extensions = ">=3.7.4.2"
 typing-inspect = ">=0.4.0"
 
 [package.extras]
-dev = ["pyre-check (==0.9.9)", "jinja2 (==3.0.3)", "slotscheck (>=0.7.1)", "setuptools-rust (>=0.12.1)", "usort (==1.0.0rc1)", "ufmt (==1.3)", "sphinx-rtd-theme (>=0.4.3)", "setuptools-scm (>=6.0.1)", "prompt-toolkit (>=2.0.9)", "nbsphinx (>=0.4.2)", "maturin (>=0.8.3,<0.9)", "jupyter (>=1.0.0)", "hypothesmith (>=0.0.4)", "hypothesis (>=4.36.0)", "flake8 (>=3.7.8)", "fixit (==0.1.1)", "coverage (>=4.5.4)", "black (==22.3.0)"]
+dev = ["black (==22.3.0)", "coverage (>=4.5.4)", "fixit (==0.1.1)", "flake8 (>=3.7.8)", "hypothesis (>=4.36.0)", "hypothesmith (>=0.0.4)", "jupyter (>=1.0.0)", "maturin (>=0.8.3,<0.9)", "nbsphinx (>=0.4.2)", "prompt-toolkit (>=2.0.9)", "setuptools-scm (>=6.0.1)", "sphinx-rtd-theme (>=0.4.3)", "ufmt (==1.3)", "usort (==1.0.0rc1)", "setuptools-rust (>=0.12.1)", "slotscheck (>=0.7.1)", "jinja2 (==3.0.3)", "pyre-check (==0.9.9)"]
 
 [[package]]
 name = "marshmallow"
@@ -527,10 +527,10 @@ python-versions = ">=3.7"
 packaging = ">=17.0"
 
 [package.extras]
-tests = ["simplejson", "pytz", "pytest"]
-lint = ["pre-commit (>=2.4,<3.0)", "flake8-bugbear (==22.6.22)", "flake8 (==4.0.1)", "mypy (==0.961)"]
-docs = ["autodocsumm (==0.2.8)", "sphinx-version-warning (==1.1.2)", "alabaster (==0.7.12)", "sphinx-issues (==3.0.1)", "sphinx (==4.5.0)"]
-dev = ["tox", "pre-commit (>=2.4,<3.0)", "flake8-bugbear (==22.6.22)", "flake8 (==4.0.1)", "mypy (==0.961)", "simplejson", "pytz", "pytest"]
+dev = ["pytest", "pytz", "simplejson", "mypy (==0.961)", "flake8 (==4.0.1)", "flake8-bugbear (==22.6.22)", "pre-commit (>=2.4,<3.0)", "tox"]
+docs = ["sphinx (==4.5.0)", "sphinx-issues (==3.0.1)", "alabaster (==0.7.12)", "sphinx-version-warning (==1.1.2)", "autodocsumm (==0.2.8)"]
+lint = ["mypy (==0.961)", "flake8 (==4.0.1)", "flake8-bugbear (==22.6.22)", "pre-commit (>=2.4,<3.0)"]
+tests = ["pytest", "pytz", "simplejson"]
 
 [[package]]
 name = "marshmallow-enum"
@@ -986,9 +986,9 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*, <4"
 
 [package.extras]
+brotli = ["brotlicffi (>=0.8.0)", "brotli (>=1.0.9)", "brotlipy (>=0.6.0)"]
+secure = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "certifi", "ipaddress"]
 socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
-secure = ["ipaddress", "certifi", "idna (>=2.0.0)", "cryptography (>=1.3.4)", "pyOpenSSL (>=0.14)"]
-brotli = ["brotlipy (>=0.6.0)", "brotli (>=1.0.9)", "brotlicffi (>=0.8.0)"]
 
 [[package]]
 name = "yapf"
@@ -1001,7 +1001,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<4"
-content-hash = "f0278515c9261c220fa15eae997e30c1014e24f80aa212fbdec07cc2c749d272"
+content-hash = "2d248f647a23d89a44bbe051c2d911c763e67d50f78a6e629485b67a292e14fd"
 
 [metadata.files]
 async-generator = [
@@ -1041,16 +1041,16 @@ black = [
     {file = "black-22.6.0.tar.gz", hash = "sha256:6c6d39e28aed379aec40da1c65434c77d75e65bb59a1e1c283de545fb4e7c6c9"},
 ]
 boto3 = [
-    {file = "boto3-1.24.52-py3-none-any.whl", hash = "sha256:3e7664515a2228e695489600412644f59df4eb56202c5b4acab24f4d65e6e7c0"},
-    {file = "boto3-1.24.52.tar.gz", hash = "sha256:95a1f54b5cf5e09b81f5ee79f3704977951605683fa1aafa86438bedd1f22507"},
+    {file = "boto3-1.24.57-py3-none-any.whl", hash = "sha256:74a50c718594a38fa846ce6951ea4704a5836194e2d4055e959baef39299d283"},
+    {file = "boto3-1.24.57.tar.gz", hash = "sha256:1be1aa320ef33d6e10e82adea3caeb0d2c185284457d1e2406339b44f45d7565"},
 ]
 boto3-stubs = [
     {file = "boto3-stubs-1.22.13.tar.gz", hash = "sha256:d81608f1be615547dbca346044572d1c07b9b5741ec579da5445429f05c67074"},
     {file = "boto3_stubs-1.22.13-py3-none-any.whl", hash = "sha256:6460ff29c38481ee244f3f1a3e7e3c0f606e398c449e53e8662204cd69343a41"},
 ]
 botocore = [
-    {file = "botocore-1.27.52-py3-none-any.whl", hash = "sha256:31d1379ceebcbb572f3040901d76b91e9147c3be6523957a5f4da26ac0ba8ff2"},
-    {file = "botocore-1.27.52.tar.gz", hash = "sha256:30b1f14dec9a58995d7921893beaf3ce2f3289658ea2e7449a900b0c58d154b5"},
+    {file = "botocore-1.27.57-py3-none-any.whl", hash = "sha256:e55510321dba95065a071909177ab6d4e1621b41f090cefe54252af9b0766855"},
+    {file = "botocore-1.27.57.tar.gz", hash = "sha256:f3dd75a789ac1a3e3f06fe0725ee138522c106c4e6abc917a4915617c4a32662"},
 ]
 botocore-stubs = [
     {file = "botocore-stubs-1.27.52.tar.gz", hash = "sha256:a853396ea00fc2810b011c725e9fa676851a9ae69fd414982e57193218987d1a"},
