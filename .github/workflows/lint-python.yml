@@ -29,7 +29,7 @@ jobs:
             - name: Install Python Dependencies (poetry)
               run: |
                   python -m pip install --upgrade pip
-                  curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+                  curl -sSL https://install.python-poetry.org | python -
                   source $HOME/.poetry/env
                   poetry install
             # - name: Check Formatting (black)
