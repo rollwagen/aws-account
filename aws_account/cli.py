@@ -101,10 +101,14 @@ def main(version: bool, debug: bool):
         exit(0)
 
     identity: AWSIdentity
-    account: AWSAccount = None
+    account: AWSAccount = None  # type: ignore
     try:
         session: Session = botocore.session.get_session()
+        if session.get_credentials() is None:
+            log.error("Unable to locate any AWS credentials. Exiting.")
+            sys.exit(1)
         log.debug(f"{session.get_credentials().access_key=}")
+
         # noinspection PyTypeChecker
         sts: STSClient = session.create_client("sts")  # pyre-ignore[9]
         caller_identity = sts.get_caller_identity()

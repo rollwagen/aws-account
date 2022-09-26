@@ -29,12 +29,12 @@ jobs:
             - name: Install Python Dependencies (poetry)
               run: |
                   python -m pip install --upgrade pip
-                  curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-                  source $HOME/.poetry/env
+                  curl -sSL https://install.python-poetry.org | python -
+                  poetry --version  # source $HOME/.poetry/env
                   poetry install
             # - name: Check Formatting (black)
             #   run: black --line-length 120 aws_account
             - name: Lint (flake8)
               run: |
-                source $HOME/.poetry/env
+                poetry --version  # source $HOME/.poetry/env
                 poetry run flake8 --max-line-length 120 aws_account
