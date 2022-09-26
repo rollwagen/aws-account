@@ -1,12 +1,4 @@
 [[package]]
-name = "async-generator"
-version = "1.10"
-description = "Async generators and context managers for Python 3.5+"
-category = "dev"
-optional = false
-python-versions = ">=3.5"
-
-[[package]]
 name = "attrs"
 version = "21.4.0"
 description = "Classes Without Boilerplate"
@@ -778,20 +770,19 @@ diagrams = ["jinja2", "railroad-diagrams"]
 
 [[package]]
 name = "pyre-check"
-version = "0.9.15"
+version = "0.9.16"
 description = "A performant type checker for Python"
 category = "dev"
 optional = false
 python-versions = ">=3.6"
 
 [package.dependencies]
-async-generator = "*"
 click = ">=8.0"
 dataclasses-json = "*"
 intervaltree = "*"
 libcst = "*"
 psutil = "*"
-pyre-extensions = "*"
+pyre-extensions = ">=0.0.29"
 tabulate = "*"
 testslide = ">=2.7.0"
 typing-extensions = "*"
@@ -995,10 +986,6 @@ python-versions = ">=3.9,<4"
 content-hash = "96a296a269ae09f0c038f9fb6299bd7bb843c690510774df1a1840a3c5b67070"
 
 [metadata.files]
-async-generator = [
-    {file = "async_generator-1.10-py3-none-any.whl", hash = "sha256:01c7bf666359b4967d2cda0000cc2e4af16a0ae098cbffcb8472fb9e8ad6585b"},
-    {file = "async_generator-1.10.tar.gz", hash = "sha256:6ebb3d106c12920aaae42ccb6f787ef5eefdcdd166ea3d628fa8476abe712144"},
-]
 attrs = [
     {file = "attrs-21.4.0-py2.py3-none-any.whl", hash = "sha256:2d27e3784d7a565d36ab851fe94887c5eccd6a463168875832a1be79c82828b4"},
     {file = "attrs-21.4.0.tar.gz", hash = "sha256:626ba8234211db98e869df76230a137c4c40a12d72445c45d5f5b716f076e2fd"},
@@ -1249,9 +1236,9 @@ pyparsing = [
     {file = "pyparsing-3.0.9.tar.gz", hash = "sha256:2b020ecf7d21b687f219b71ecad3631f644a47f01403fa1d1036b0c6416d70fb"},
 ]
 pyre-check = [
-    {file = "pyre-check-0.9.15.tar.gz", hash = "sha256:48e93c9675ba0ff28ac7776969534c2d97cb19e3ba73ce88ae92206fe99e8bfe"},
-    {file = "pyre_check-0.9.15-py3-none-macosx_10_11_x86_64.whl", hash = "sha256:2d1a62cea859a6d0fd17ceda2fe0fdd51b8d0c5c0a0594ae72a42aea2bc2f46d"},
-    {file = "pyre_check-0.9.15-py3-none-manylinux1_x86_64.whl", hash = "sha256:5458250974ac553f7bbfe850af350fda79255c60769017094c1f31700d5419e4"},
+    {file = "pyre-check-0.9.16.tar.gz", hash = "sha256:d49a5e453f386a454fbceddfef1c674515ae8de1a1461a9d6a3f5848a34c1028"},
+    {file = "pyre_check-0.9.16-py3-none-macosx_10_11_x86_64.whl", hash = "sha256:aa4674d06f41c73b543671b7e2b52a907af739587dce9cc8bd2ee50636de895a"},
+    {file = "pyre_check-0.9.16-py3-none-manylinux1_x86_64.whl", hash = "sha256:ca626b3a0cd1c740190da950399506ccbb9dca7326f6762c3ee8be39685ec4e5"},
 ]
 pyre-extensions = [
     {file = "pyre-extensions-0.0.29.tar.gz", hash = "sha256:4113600706c47306a156dcc9c405f4d458c505be432699571e357ef20e2d5d77"},
