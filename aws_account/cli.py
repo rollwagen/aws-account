@@ -14,6 +14,7 @@ import click
 from botocore.session import Session
 from colorama import Fore
 from mypy_boto3_iam.client import IAMClient
+from mypy_boto3_organizations import OrganizationsClient
 from mypy_boto3_sso.client import SSOClient
 from mypy_boto3_sts.client import STSClient
 
@@ -119,12 +120,10 @@ def main(version: bool, debug: bool):
             arn=caller_identity["Arn"],
         )
 
-        log.debug(f"{identity=}")
+        log.debug(f"{identity.is_iam()=} {identity.is_assumed_role()=}")
 
         if identity.is_assumed_role():
-
-            # in case not logged in via 'aws sso login',
-            # no sso token will be present
+            # in case not logged in via 'aws sso login', no sso token will be present
             if token := _get_access_token():
                 # noinspection PyTypeChecker
                 sso_client: SSOClient = session.create_client("sso")  # pyre-ignore[9]
@@ -138,10 +137,27 @@ def main(version: bool, debug: bool):
                 )
 
         elif identity.is_iam():
-            # noinspection PyTypeChecker
-            iam: IAMClient = session.create_client("iam")  # pyre-ignore[9]
-            account_alias = iam.list_account_aliases()["AccountAliases"][0]
-            account = AWSAccount(id=identity.account, name=account_alias, email="")
+
+            try:
+                # noinspection PyTypeChecker
+                iam: IAMClient = session.create_client("iam")  # pyre-ignore[9]
+                account_alias = iam.list_account_aliases()["AccountAliases"][0]
+                account = AWSAccount(id=identity.account, name=account_alias, email="")
+                log.debug(f"iam.list_account_aliases: {account=}")
+            except botocore.exceptions.ClientError as e:
+                # if above didn't work, try via organizations
+                if e.response['Error']['Code'] != "InvalidClientTokenId":
+                    raise e
+                # noinspection PyTypeChecker
+                org_client: OrganizationsClient = session.create_client("organizations")  # pyre-ignore[9]
+                account_list = org_client.list_accounts(MaxResults=10)
+                account_item = next(a for a in account_list["Accounts"] if a["Id"] == identity.account)
+                account = AWSAccount(
+                    id=account_item["Id"],
+                    name=account_item["Name"],
+                    email=account_item["Email"],
+                )
+                log.debug(f"org.list_accounts: {account=}")
 
     except botocore.exceptions.ClientError as error:
         error_code = error.response['Error']['Code']
@@ -154,11 +170,14 @@ def main(version: bool, debug: bool):
         elif error_code == 'ExpiredToken':
             log.error("The AWS security token is expired. Exiting.")
             sys.exit(1)
+        else:
+            log.error(error)
+            log.error("Unknown exception. Exiting.")
+
     except Exception as exception:
         log.error(exception)
         sys.exit(1)
 
-    log.debug(f'get_call_identity() {identity=} {account=}')
     _print_identity_info(identity=identity, account=account)
 
 
@@ -209,7 +228,6 @@ def _print_identity_info(identity: AWSIdentity,
 
 
 def _init_logger(debug_level: bool = False) -> Logger:
-
     class CustomFormatter(Formatter):
         grey = "\x1b[38;21m"
         yellow = "\x1b[33;21m"
