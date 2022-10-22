@@ -10,7 +10,7 @@ python-versions = ">=3.5"
 dev = ["cloudpickle", "coverage[toml] (>=5.0.2)", "furo", "hypothesis", "mypy (>=0.900,!=0.940)", "pre-commit", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "sphinx", "sphinx-notfound-page", "zope.interface"]
 docs = ["furo", "sphinx", "sphinx-notfound-page", "zope.interface"]
 tests = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy (>=0.900,!=0.940)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "zope.interface"]
-tests_no_zope = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy (>=0.900,!=0.940)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins"]
+tests-no-zope = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy (>=0.900,!=0.940)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins"]
 
 [[package]]
 name = "black"
@@ -606,6 +606,17 @@ python-versions = ">=3.7"
 typing-extensions = ">=4.1.0"
 
 [[package]]
+name = "mypy-boto3-organizations"
+version = "1.24.36.post1"
+description = "Type annotations for boto3.Organizations 1.24.36 service generated with mypy-boto3-builder 7.10.0"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+typing-extensions = ">=4.1.0"
+
+[[package]]
 name = "mypy-boto3-rds"
 version = "1.24.76"
 description = "Type annotations for boto3.RDS 1.24.76 service generated with mypy-boto3-builder 7.11.8"
@@ -747,7 +758,7 @@ optional = false
 python-versions = ">=3.6"
 
 [[package]]
-name = "Pygments"
+name = "pygments"
 version = "2.13.0"
 description = "Pygments is a syntax highlighting package written in Python."
 category = "dev"
@@ -831,7 +842,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
 six = ">=1.5"
 
 [[package]]
-name = "PyYAML"
+name = "pyyaml"
 version = "6.0"
 description = "YAML parser and emitter for Python"
 category = "dev"
@@ -880,7 +891,7 @@ python-versions = ">=3.7"
 widechars = ["wcwidth"]
 
 [[package]]
-name = "TestSlide"
+name = "testslide"
 version = "2.7.0"
 description = "A test framework for Python that makes mocking and iterating over code with tests a breeze"
 category = "dev"
@@ -983,7 +994,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<4"
-content-hash = "da582d2f0d2131338268934927fc5e73fc8b7054f8e317d00d78c96c5de9b9ac"
+content-hash = "f7a013884d60079240877d25b7b6165bfd29cf9d763bb5aae7f03fdcc0333b09"
 
 [metadata.files]
 attrs = [
@@ -1140,6 +1151,10 @@ mypy-boto3-lambda = [
     {file = "mypy-boto3-lambda-1.24.54.tar.gz", hash = "sha256:c76d28d84bdf94c8980acd85bc07f2747559ca11a990fd6785c9c2389e13aff1"},
     {file = "mypy_boto3_lambda-1.24.54-py3-none-any.whl", hash = "sha256:231b6aac22b107ebb7afa2ec6dc1311b769dbdd5bfae957cf60db3e8bc3133d7"},
 ]
+mypy-boto3-organizations = [
+    {file = "mypy-boto3-organizations-1.24.36.post1.tar.gz", hash = "sha256:f34d7936974b8b6fb52b1fea404947761b7586d2a4abf2ed4c5fd30fe5141c1f"},
+    {file = "mypy_boto3_organizations-1.24.36.post1-py3-none-any.whl", hash = "sha256:c39491974f6bc4cd71844f0d176bb0ce34c137d26a0b7a5797739885fa9af5ab"},
+]
 mypy-boto3-rds = [
     {file = "mypy-boto3-rds-1.24.76.tar.gz", hash = "sha256:d9521465d2ec919894a6f03ef956d556d5205fc83af308308600894076a63adc"},
     {file = "mypy_boto3_rds-1.24.76-py3-none-any.whl", hash = "sha256:d88bd90965f64e3344d1faf16273da6fb62f00bb539fb9ba5273feb750bb1f04"},
@@ -1230,7 +1245,7 @@ pyflakes = [
     {file = "pyflakes-2.5.0-py2.py3-none-any.whl", hash = "sha256:4579f67d887f804e67edb544428f264b7b24f435b263c4614f384135cea553d2"},
     {file = "pyflakes-2.5.0.tar.gz", hash = "sha256:491feb020dca48ccc562a8c0cbe8df07ee13078df59813b83959cbdada312ea3"},
 ]
-Pygments = [
+pygments = [
     {file = "Pygments-2.13.0-py3-none-any.whl", hash = "sha256:f643f331ab57ba3c9d89212ee4a2dabc6e94f117cf4eefde99a0574720d14c42"},
     {file = "Pygments-2.13.0.tar.gz", hash = "sha256:56a8508ae95f98e2b9bdf93a6be5ae3f7d8af858b43e02c5a2ff083726be40c1"},
 ]
@@ -1255,7 +1270,7 @@ python-dateutil = [
     {file = "python-dateutil-2.8.2.tar.gz", hash = "sha256:0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86"},
     {file = "python_dateutil-2.8.2-py2.py3-none-any.whl", hash = "sha256:961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9"},
 ]
-PyYAML = [
+pyyaml = [
     {file = "PyYAML-6.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:d4db7c7aef085872ef65a8fd7d6d09a14ae91f691dec3e87ee5ee0539d516f53"},
     {file = "PyYAML-6.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:9df7ed3b3d2e0ecfe09e14741b857df43adb5a3ddadc919a2d94fbdf78fea53c"},
     {file = "PyYAML-6.0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:77f396e6ef4c73fdc33a9157446466f1cff553d979bd00ecb64385760c6babdc"},
@@ -1313,7 +1328,7 @@ tabulate = [
     {file = "tabulate-0.9.0-py3-none-any.whl", hash = "sha256:024ca478df22e9340661486f85298cff5f6dcdba14f3813e8830015b9ed1948f"},
     {file = "tabulate-0.9.0.tar.gz", hash = "sha256:0095b12bf5966de529c0feb1fa08671671b3368eec77d7ef7ab114be2c068b3c"},
 ]
-TestSlide = [
+testslide = [
     {file = "TestSlide-2.7.0.tar.gz", hash = "sha256:23ece0b9f5b704b33b978e9c8797936034516adc3c4743ebdaed664aa700c3cb"},
 ]
 toml = [
