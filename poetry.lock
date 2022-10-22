@@ -10,7 +10,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 dev = ["cloudpickle", "coverage[toml] (>=5.0.2)", "furo", "hypothesis", "mypy", "pre-commit", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "six", "sphinx", "sphinx-notfound-page", "zope.interface"]
 docs = ["furo", "sphinx", "sphinx-notfound-page", "zope.interface"]
 tests = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "six", "zope.interface"]
-tests_no_zope = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "six"]
+tests-no-zope = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "six"]
 
 [[package]]
 name = "black"
@@ -399,7 +399,7 @@ crt = ["awscrt (==0.14.0)"]
 
 [[package]]
 name = "botocore-stubs"
-version = "1.27.71"
+version = "1.27.92"
 description = "Type annotations and code completion for botocore"
 category = "dev"
 optional = false
@@ -1028,8 +1028,8 @@ botocore = [
     {file = "botocore-1.27.71.tar.gz", hash = "sha256:91dc4e8ae768db3a5c26ef8acd6425bbbec4b17636350d526c226a5879d3c613"},
 ]
 botocore-stubs = [
-    {file = "botocore-stubs-1.27.71.tar.gz", hash = "sha256:99a866d9b5eaf9bdda2faae33209d5d1a45420b4b1fa6fca55aad765c5eca5ff"},
-    {file = "botocore_stubs-1.27.71-py3-none-any.whl", hash = "sha256:117a49fd6ef1d2b78d89bd0d5afaca3915a0e1ea29d1ea17e4dbc87ac92885e8"},
+    {file = "botocore_stubs-1.27.92-py3-none-any.whl", hash = "sha256:73dfc73cd7422e87be03d1316ccc4c91c64d85f1dd96e46e48363dd38695cb28"},
+    {file = "botocore_stubs-1.27.92.tar.gz", hash = "sha256:0c1da00fe9279281dc090454894a59a25c915bb489f20a0eaea669bd661cb2dc"},
 ]
 click = [
     {file = "click-8.1.3-py3-none-any.whl", hash = "sha256:bb4d8133cb15a609f44e8213d9b391b0809795062913b383c62be0ee95b1db48"},
