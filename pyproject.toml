@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "aws-account"
-version = "0.2.1"
+version = "0.2.2"
 authors = ["M. Rollwagen <rollwagen@gmail.com>"]
 license = "Apache-2.0"
 repository = "https://github.com/rollwagen/aws-account"
@@ -12,11 +12,11 @@ aws-account = 'aws_account.cli:main'
 [tool.poetry.dependencies]
 python = ">=3.9,<4"
 click = ">=8.0.3"
-boto3 = "<1.24.93"
+boto3 = ">=1.24.93"
 colorama = ">=0.4"
-mypy-boto3-sts = "<=1.22.10"
-mypy-boto3-sso = "<=1.22.10"
-mypy-boto3-iam = "<=1.22.10"
+mypy-boto3-sts = ">=1.22.10"
+mypy-boto3-sso = ">=1.22.10"
+mypy-boto3-iam = ">=1.22.10"
 
 [tool.poetry.dev-dependencies]
 yapf = "*"
