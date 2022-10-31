@@ -624,8 +624,8 @@ typing-extensions = ">=4.1.0"
 
 [[package]]
 name = "mypy-boto3-organizations"
-version = "1.24.36.post1"
-description = "Type annotations for boto3.Organizations 1.24.36 service generated with mypy-boto3-builder 7.10.0"
+version = "1.25.0"
+description = "Type annotations for boto3.Organizations 1.25.0 service generated with mypy-boto3-builder 7.11.10"
 category = "main"
 optional = false
 python-versions = ">=3.7"
@@ -1177,8 +1177,8 @@ mypy-boto3-lambda = [
     {file = "mypy_boto3_lambda-1.24.54-py3-none-any.whl", hash = "sha256:231b6aac22b107ebb7afa2ec6dc1311b769dbdd5bfae957cf60db3e8bc3133d7"},
 ]
 mypy-boto3-organizations = [
-    {file = "mypy-boto3-organizations-1.24.36.post1.tar.gz", hash = "sha256:f34d7936974b8b6fb52b1fea404947761b7586d2a4abf2ed4c5fd30fe5141c1f"},
-    {file = "mypy_boto3_organizations-1.24.36.post1-py3-none-any.whl", hash = "sha256:c39491974f6bc4cd71844f0d176bb0ce34c137d26a0b7a5797739885fa9af5ab"},
+    {file = "mypy-boto3-organizations-1.25.0.tar.gz", hash = "sha256:e69e8b0355c76fc6cfc5ebc0c52c53b4641a82cf2053163a9c164202174d3fea"},
+    {file = "mypy_boto3_organizations-1.25.0-py3-none-any.whl", hash = "sha256:9f7340f8153f64f2dee85f713e674dfb731200996f60d7abe871cc982f57ae56"},
 ]
 mypy-boto3-rds = [
     {file = "mypy-boto3-rds-1.24.76.tar.gz", hash = "sha256:d9521465d2ec919894a6f03ef956d556d5205fc83af308308600894076a63adc"},
