@@ -964,7 +964,7 @@ python-versions = ">=3.7,<4.0"
 
 [[package]]
 name = "types-colorama"
-version = "0.4.15.1"
+version = "0.4.15.4"
 description = "Typing stubs for colorama"
 category = "dev"
 optional = false
@@ -1376,8 +1376,8 @@ types-awscrt = [
     {file = "types_awscrt-0.14.7-py3-none-any.whl", hash = "sha256:b65355b9926ce0cdf5f9949b2c310937f6f44b2e56292243888041dce60bc47b"},
 ]
 types-colorama = [
-    {file = "types-colorama-0.4.15.1.tar.gz", hash = "sha256:bc43687a0bf3f42115a56400bd53c618592cc611e66ff57d5cc95024cb44fb1a"},
-    {file = "types_colorama-0.4.15.1-py3-none-any.whl", hash = "sha256:f35f0fc7b4e16d25cbd801b1f6e9d2123674d2561227624d0d7c5f97fac9a901"},
+    {file = "types-colorama-0.4.15.4.tar.gz", hash = "sha256:60f7d6257913135218564cf1b9d2e9678c0ce72c051d9ffaa1a74c76904e5808"},
+    {file = "types_colorama-0.4.15.4-py3-none-any.whl", hash = "sha256:43e071db963fcd02e552e7513a236b9ef536188552cf6b576511f2474601a253"},
 ]
 types-s3transfer = [
     {file = "types-s3transfer-0.6.0.post4.tar.gz", hash = "sha256:0c45331bfd0db210f5043efd2bc3ecd4b3482a02c28faea33edf719b6be38431"},
