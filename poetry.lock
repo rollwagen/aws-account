@@ -62,10 +62,8 @@ category = "main"
 optional = false
 python-versions = ">= 3.7"
 files = [
-
     {file = "boto3-1.24.96-py3-none-any.whl", hash = "sha256:748c055214c629744c34c7f94bfa888733dfac0b92e1daef9c243e1391ea4f53"},
     {file = "boto3-1.24.96.tar.gz", hash = "sha256:6b8899542cff82becceb3498a2240bf77c96def0515b0a31f7f6a9d5b92e7a3d"},
-
 ]
 
 [package.dependencies]
@@ -433,10 +431,8 @@ category = "main"
 optional = false
 python-versions = ">= 3.7"
 files = [
-
     {file = "botocore-1.27.96-py3-none-any.whl", hash = "sha256:e41a81a18511f2f9181b2a9ab302a55c0effecccbef846c55aad0c47bfdbefb9"},
     {file = "botocore-1.27.96.tar.gz", hash = "sha256:fc0a13ef6042e890e361cf408759230f8574409bb51f81740d2e5d8ad5d1fbea"},
-
 ]
 
 [package.dependencies]
@@ -449,14 +445,14 @@ crt = ["awscrt (==0.16.9)"]
 
 [[package]]
 name = "botocore-stubs"
-version = "1.29.17"
+version = "1.29.74"
 description = "Type annotations and code completion for botocore"
 category = "dev"
 optional = false
 python-versions = ">=3.7,<4.0"
 files = [
-    {file = "botocore_stubs-1.29.17-py3-none-any.whl", hash = "sha256:18e49b46be91eba6fbe123aa820c31456f95c713618bc6b91f44e43ee4dbf3ca"},
-    {file = "botocore_stubs-1.29.17.tar.gz", hash = "sha256:36c571af9d0ff9a0a97252d9e20d7a5a29754478fabf22d1b0cb9f614f2d26f0"},
+    {file = "botocore_stubs-1.29.74-py3-none-any.whl", hash = "sha256:d75329e6740c61a056bff7dd63b3cf7c02409195cdbcc6c45b03d06dd95925b1"},
+    {file = "botocore_stubs-1.29.74.tar.gz", hash = "sha256:9aea23874038a2cb469f320f5018845bc4143cce82e0c1eee98a2973981fc373"},
 ]
 
 [package.dependencies]
@@ -1107,10 +1103,8 @@ category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
-
     {file = "pytest-7.2.1-py3-none-any.whl", hash = "sha256:c7c6ca206e93355074ae32f7403e8ea12163b1163c976fee7d4d84027c162be5"},
     {file = "pytest-7.2.1.tar.gz", hash = "sha256:d45e0952f3727241918b8fd0f376f5ff6b301cc0777c6f9a556935c92d8a7d42"},
-
 ]
 
 [package.dependencies]
