@@ -803,14 +803,14 @@ typing-extensions = ">=4.1.0"
 
 [[package]]
 name = "mypy-boto3-iam"
-version = "1.26.62"
-description = "Type annotations for boto3.IAM 1.26.62 service generated with mypy-boto3-builder 7.12.3"
+version = "1.26.91"
+description = "Type annotations for boto3.IAM 1.26.91 service generated with mypy-boto3-builder 7.13.0"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "mypy-boto3-iam-1.26.62.tar.gz", hash = "sha256:69bf3ba7c5b3859f654871059de31384cd113f605e10a3c918dafb4a4bd71676"},
-    {file = "mypy_boto3_iam-1.26.62-py3-none-any.whl", hash = "sha256:565d0cfd479065862ac658e467d96d22eae934e36be8bdd740ac10765bab3763"},
+    {file = "mypy-boto3-iam-1.26.91.tar.gz", hash = "sha256:8168ce764f79be670f82b8b066af1980b8b087e227feaae310ef2aa92653b3bb"},
+    {file = "mypy_boto3_iam-1.26.91-py3-none-any.whl", hash = "sha256:587c6a2c20c7b53dcd756067072cdda3588ddb778b3ee6c61077dd6d0552ddcf"},
 ]
 
 [package.dependencies]
