@@ -810,17 +810,14 @@ typing-extensions = ">=4.1.0"
 
 [[package]]
 name = "mypy-boto3-organizations"
-version = "1.26.83"
-description = "Type annotations for boto3.Organizations 1.26.83 service generated with mypy-boto3-builder 7.12.5"
+version = "1.28.16"
+description = "Type annotations for boto3.Organizations 1.28.16 service generated with mypy-boto3-builder 7.17.1"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "mypy-boto3-organizations-1.26.83.tar.gz", hash = "sha256:7919d3379d772e8c401cebe422b2a5fab1167733eb8603c97facc31340056bd5"},
-    {file = "mypy_boto3_organizations-1.26.83-py3-none-any.whl", hash = "sha256:55db0148669b2c6703a70b3cb197b9589e289c194c18920358e2d7b1fa7611f8"},
+    {file = "mypy-boto3-organizations-1.28.16.tar.gz", hash = "sha256:2ccda7f24d2096f1e5a5161c253d868cdf4f635be2bb254a21f198a2cedfbd28"},
+    {file = "mypy_boto3_organizations-1.28.16-py3-none-any.whl", hash = "sha256:5b36d5dadc530679a384f07aa441fdc10645904ac88dd058025e228aab90563a"},
 ]
-
-[package.dependencies]
-typing-extensions = ">=4.1.0"
 
 [[package]]
 name = "mypy-boto3-rds"
