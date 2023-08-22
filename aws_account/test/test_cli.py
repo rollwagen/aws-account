@@ -53,4 +53,4 @@ def test_get_access_token(expanduser, listdir, builtins_open):
             "/Users/test/.aws/sso/cache/09042c3fff60f06bad40477bd3d1fc628034320e.json",
             "r",
         )
-        assert token == "pzFA3BZ0s7Q4xHGv"
+        assert token == "pzFA3BZ0s7Q4xHGv"  # nosec

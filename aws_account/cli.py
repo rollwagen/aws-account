@@ -33,12 +33,13 @@ class AWSIdentity(NamedTuple):
     arn: str
 
     class CallerIdentityType(Enum):  # type: ignore
-        """An identity can have one of the following types:
+        """
+        An identity can have one of the following types:
             arn:aws:iam::123456789012:user/Alice
             arn:aws:sts::123456789012:assumed-role/my-role-name/my-role-session-name
             arn:aws:sts::123456789012:federated-user/my-federated-user-name
         For further details see AWS documentation at
-        <https://docs.aws.amazon.com/STS/latest/APIReference/API_GetCallerIdentity.html>
+        <https://docs.aws.amazon.com/STS/latest/APIReference/API_GetCallerIdentity.html>.
         """
 
         IAM = 1
@@ -93,8 +94,8 @@ class AWSIdentity(NamedTuple):
 @click.option("--version", is_flag=True, help="Print version number.")
 @click.option("--debug", is_flag=True, help="Enable debug output.")
 def main(version: bool, debug: bool):
-    """A tool to print out AWS account and identity information to verify
-    which account/organization is currently in use."""
+    """aws-account prints out AWS account and identity information.
+    It shows which account/organization is currently in use."""
     global log
     log = _init_logger(debug)
     if version:
