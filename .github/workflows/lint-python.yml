@@ -1,40 +1,40 @@
 name: Python Linting
 on:
-    push:
-        paths:
-            - 'aws_account/**'
-            - '.github/**'
-    pull_request:
-        paths:
-            - 'aws_account/**'
-            - '.github/**'
+  push:
+    paths:
+      - "aws_account/**"
+      - ".github/**"
+  pull_request:
+    paths:
+      - "aws_account/**"
+      - ".github/**"
 
 jobs:
-    lint-python:
-        name: "Lint (flake8)"
-        runs-on: ubuntu-latest
-        defaults:
-            run:
-                working-directory: .
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v3
-            - name: Setup Python
-              uses: actions/setup-python@v3
-              with:
-                  python-version: '3.10'
-                  architecture: 'x64'
-            - name: List current working dir (debug)
-              run: ls -la
-            - name: Install Python Dependencies (poetry)
-              run: |
-                  python -m pip install --upgrade pip
-                  curl -sSL https://install.python-poetry.org | python -
-                  poetry --version  # source $HOME/.poetry/env
-                  poetry install
-            # - name: Check Formatting (black)
-            #   run: black --line-length 120 aws_account
-            - name: Lint (flake8)
-              run: |
-                poetry --version  # source $HOME/.poetry/env
-                poetry run flake8 --max-line-length 120 aws_account
+  lint-python:
+    name: "Lint (flake8)"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.11"
+          architecture: "x64"
+      - name: List current working dir (debug)
+        run: ls -la
+      - name: Install Python Dependencies (poetry)
+        run: |
+          python -m pip install --upgrade pip
+          curl -sSL https://install.python-poetry.org | python -
+          poetry --version  # source $HOME/.poetry/env
+          poetry install
+      # - name: Check Formatting (black)
+      #   run: black --line-length 120 aws_account
+      - name: Lint (flake8)
+        run: |
+          poetry --version  # source $HOME/.poetry/env
+          poetry run flake8 --max-line-length 120 aws_account
