@@ -29,7 +29,7 @@ boto3-stubs = { extras = [
   "sts",
   "sso",
   "iam",
-], version = "<1.26.143" }
+], version = "<1.28.65" }
 pytest = "*"
 flake8 = "*"
 black = "*"
