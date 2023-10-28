@@ -840,14 +840,17 @@ files = [
 
 [[package]]
 name = "mypy-boto3-sso"
-version = "1.28.16"
-description = "Type annotations for boto3.SSO 1.28.16 service generated with mypy-boto3-builder 7.17.1"
+version = "1.28.58"
+description = "Type annotations for boto3.SSO 1.28.58 service generated with mypy-boto3-builder 7.19.0"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "mypy-boto3-sso-1.28.16.tar.gz", hash = "sha256:bfd0be5a3a5efc9baeeb720df7f3c78a7e3eb27d3f38194fae97e8d9ae9c9498"},
-    {file = "mypy_boto3_sso-1.28.16-py3-none-any.whl", hash = "sha256:8874e62ef61d08073d855bb32b74af4d3cc369c173b0deadb6c70b26e475bee4"},
+    {file = "mypy-boto3-sso-1.28.58.tar.gz", hash = "sha256:1227aac2867e923ddb6d10e0c030cd6443d05d716fdf01505026078af33acde1"},
+    {file = "mypy_boto3_sso-1.28.58-py3-none-any.whl", hash = "sha256:3ba5d72237347215269ba5709c5a575cafd7923c8e77fdc1c796fe7868a2272c"},
 ]
+
+[package.dependencies]
+typing-extensions = {version = ">=4.1.0", markers = "python_version < \"3.12\""}
 
 [[package]]
 name = "mypy-boto3-sts"
