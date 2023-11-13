@@ -771,14 +771,17 @@ files = [
 
 [[package]]
 name = "mypy-boto3-iam"
-version = "1.28.16"
-description = "Type annotations for boto3.IAM 1.28.16 service generated with mypy-boto3-builder 7.17.1"
+version = "1.28.79"
+description = "Type annotations for boto3.IAM 1.28.79 service generated with mypy-boto3-builder 7.19.1"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "mypy-boto3-iam-1.28.16.tar.gz", hash = "sha256:8ef9ef9a9fabcc1058a46bbd6b1408960a70d72e45a024862676e5a896c446b3"},
-    {file = "mypy_boto3_iam-1.28.16-py3-none-any.whl", hash = "sha256:1416df5e838be7cc8b65def4721097faf691f8f0c65f58fe417d18b9e6b8de61"},
+    {file = "mypy-boto3-iam-1.28.79.tar.gz", hash = "sha256:b5f8bce0d34966c917445e002c51c7e0cde553bfa62f44b131ceb52d82fec45e"},
+    {file = "mypy_boto3_iam-1.28.79-py3-none-any.whl", hash = "sha256:9dca1b7a3052b512dac7d4c9a58b713d5c53e216dd2c396eb64c75b083ed0727"},
 ]
+
+[package.dependencies]
+typing-extensions = {version = ">=4.1.0", markers = "python_version < \"3.12\""}
 
 [[package]]
 name = "mypy-boto3-lambda"
