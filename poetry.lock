@@ -796,13 +796,13 @@ files = [
 
 [[package]]
 name = "mypy-boto3-organizations"
-version = "1.28.36"
-description = "Type annotations for boto3.Organizations 1.28.36 service generated with mypy-boto3-builder 7.18.0"
+version = "1.34.56"
+description = "Type annotations for boto3.Organizations 1.34.56 service generated with mypy-boto3-builder 7.23.2"
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 files = [
-    {file = "mypy-boto3-organizations-1.28.36.tar.gz", hash = "sha256:205475b8855956325edac592f53bfbe65ebb497881e049bbe22285cf98220169"},
-    {file = "mypy_boto3_organizations-1.28.36-py3-none-any.whl", hash = "sha256:f8510dcb2c15cc654fdbd7b435346a62143ecf79a53ab9f1553684ae88ac22ea"},
+    {file = "mypy-boto3-organizations-1.34.56.tar.gz", hash = "sha256:8953948244c8d2c362c5b7ebfd9fc7f47b1cdad842a830aa1eb96d8677992d55"},
+    {file = "mypy_boto3_organizations-1.34.56-py3-none-any.whl", hash = "sha256:299cc19ba6e796b94d169d333e49da52f426be2b2a5a2bf23b14b81b441d7e1e"},
 ]
 
 [package.dependencies]
