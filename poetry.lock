@@ -46,17 +46,17 @@ uvloop = ["uvloop (>=0.15.2)"]
 
 [[package]]
 name = "boto3"
-version = "1.34.24"
+version = "1.34.128"
 description = "The AWS SDK for Python"
 optional = false
-python-versions = ">= 3.8"
+python-versions = ">=3.8"
 files = [
-    {file = "boto3-1.34.24-py3-none-any.whl", hash = "sha256:795803812b78260cfe019ef65021ec9e8049bfb6a027564e1a3b59c1a4a11106"},
-    {file = "boto3-1.34.24.tar.gz", hash = "sha256:791523f41b5e731c8ac0d2f65b978348fb6c92f02e0dbc9a7bc0b3760195cc60"},
+    {file = "boto3-1.34.128-py3-none-any.whl", hash = "sha256:a048ff980a81cd652724a73bc496c519b336fabe19cc8bfc6c53b2ff6eb22c7b"},
+    {file = "boto3-1.34.128.tar.gz", hash = "sha256:43a6e99f53a8d34b3b4dbe424dbcc6b894350dc41a85b0af7c7bc24a7ec2cead"},
 ]
 
 [package.dependencies]
-botocore = ">=1.34.24,<1.35.0"
+botocore = ">=1.34.128,<1.35.0"
 jmespath = ">=0.7.1,<2.0.0"
 s3transfer = ">=0.10.0,<0.11.0"
 
@@ -454,22 +454,22 @@ xray = ["mypy-boto3-xray (>=1.28.0,<1.29.0)"]
 
 [[package]]
 name = "botocore"
-version = "1.34.24"
+version = "1.34.128"
 description = "Low-level, data-driven core of boto 3."
 optional = false
-python-versions = ">= 3.8"
+python-versions = ">=3.8"
 files = [
-    {file = "botocore-1.34.24-py3-none-any.whl", hash = "sha256:c92f810b5faec5126f3faf7dc7d77346e407ab3b89bb613290c86ff2fd5405b9"},
-    {file = "botocore-1.34.24.tar.gz", hash = "sha256:4a48c15b87c6a72719a6c2d8688f4e52fe52c18ac9dfcaa25c7e62c5df475ee2"},
+    {file = "botocore-1.34.128-py3-none-any.whl", hash = "sha256:db67fda136c372ab3fa432580c819c89ba18d28a6152a4d2a7ea40d44082892e"},
+    {file = "botocore-1.34.128.tar.gz", hash = "sha256:8d8e03f7c8c080ecafda72036eb3b482d649f8417c90b5dca33b7c2c47adb0c9"},
 ]
 
 [package.dependencies]
 jmespath = ">=0.7.1,<2.0.0"
 python-dateutil = ">=2.1,<3.0.0"
-urllib3 = {version = ">=1.25.4,<2.1", markers = "python_version >= \"3.10\""}
+urllib3 = {version = ">=1.25.4,<2.2.0 || >2.2.0,<3", markers = "python_version >= \"3.10\""}
 
 [package.extras]
-crt = ["awscrt (==0.19.19)"]
+crt = ["awscrt (==0.20.11)"]
 
 [[package]]
 name = "botocore-stubs"
