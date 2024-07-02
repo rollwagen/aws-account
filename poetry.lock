@@ -515,13 +515,13 @@ files = [
 
 [[package]]
 name = "dataclasses-json"
-version = "0.5.9"
+version = "0.5.7"
 description = "Easily serialize dataclasses to and from JSON"
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "dataclasses-json-0.5.9.tar.gz", hash = "sha256:e9ac87b73edc0141aafbce02b44e93553c3123ad574958f0fe52a534b6707e8e"},
-    {file = "dataclasses_json-0.5.9-py3-none-any.whl", hash = "sha256:1280542631df1c375b7bc92e5b86d39e06c44760d7e3571a537b3b8acabf2f0c"},
+    {file = "dataclasses-json-0.5.7.tar.gz", hash = "sha256:c2c11bc8214fbf709ffc369d11446ff6945254a7f09128154a7620613d8fda90"},
+    {file = "dataclasses_json-0.5.7-py3-none-any.whl", hash = "sha256:bc285b5f892094c3a53d558858a88553dd6a61a11ab1a8128a0e554385dcc5dd"},
 ]
 
 [package.dependencies]
@@ -530,7 +530,7 @@ marshmallow-enum = ">=1.5.1,<2.0.0"
 typing-inspect = ">=0.4.0"
 
 [package.extras]
-dev = ["flake8", "hypothesis", "ipython", "mypy (>=0.710)", "portray", "pytest (>=7.2.0)", "setuptools", "simplejson", "twine", "types-dataclasses", "wheel"]
+dev = ["flake8", "hypothesis", "ipython", "mypy (>=0.710)", "portray", "pytest (>=6.2.3)", "simplejson", "types-dataclasses"]
 
 [[package]]
 name = "flake8"
@@ -1000,19 +1000,19 @@ plugins = ["importlib-metadata"]
 
 [[package]]
 name = "pyre-check"
-version = "0.9.21"
+version = "0.9.22"
 description = "A performant type checker for Python"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "pyre-check-0.9.21.tar.gz", hash = "sha256:9f350c222e62864b696a548e87ad117d894e230fc2e2a8084e43ee43487724eb"},
-    {file = "pyre_check-0.9.21-py3-none-macosx_10_11_x86_64.whl", hash = "sha256:3be3a4b8526527c5f334b48164906fc9195d000bd4568233dda0e916a88734df"},
-    {file = "pyre_check-0.9.21-py3-none-manylinux1_x86_64.whl", hash = "sha256:dff2db71ff6ebc546aab15be165b258f9f86f46a2127829a9b33e62a5c75660e"},
+    {file = "pyre-check-0.9.22.tar.gz", hash = "sha256:e082f926dff71661959535c3936fca5ad40a44858b5fd3e99009a616a1b57083"},
+    {file = "pyre_check-0.9.22-py3-none-macosx_10_11_x86_64.whl", hash = "sha256:4bbd61dad5669dfef00e875bf8a573866595ecbd8240f595339a9781e8a1e22e"},
+    {file = "pyre_check-0.9.22-py3-none-manylinux1_x86_64.whl", hash = "sha256:d331e2687e194fa22505e0724b1536e61bf06fddc5416d7b83d542d2270c91ce"},
 ]
 
 [package.dependencies]
 click = ">=8.0"
-dataclasses-json = "*"
+dataclasses-json = "0.5.7"
 intervaltree = "*"
 libcst = "*"
 psutil = "*"
