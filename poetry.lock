@@ -809,18 +809,18 @@ files = [
 
 [[package]]
 name = "mypy-boto3-organizations"
-version = "1.35.28"
-description = "Type annotations for boto3.Organizations 1.35.28 service generated with mypy-boto3-builder 8.1.2"
+version = "1.42.41"
+description = "Type annotations for boto3 Organizations 1.42.41 service generated with mypy-boto3-builder 8.12.0"
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "mypy_boto3_organizations-1.35.28-py3-none-any.whl", hash = "sha256:e0d27e4e77e6a370ae025c777bed331f2ed8245e772532f7aa0fa5db0544202b"},
-    {file = "mypy_boto3_organizations-1.35.28.tar.gz", hash = "sha256:953ffbe0c57464a035ac1a073ae641334b807f8fda390d95e40331cc66394453"},
+    {file = "mypy_boto3_organizations-1.42.41-py3-none-any.whl", hash = "sha256:ea807f2060b44ed266dee36989dfc95cbb401199a1cf6e6e2a094db275ed2542"},
+    {file = "mypy_boto3_organizations-1.42.41.tar.gz", hash = "sha256:cb1e0216554327b2d857b4a12f23593d82e24945cb31fdb14f71590454d5ed7a"},
 ]
 
 [package.dependencies]
-typing-extensions = {version = ">=4.1.0", markers = "python_version < \"3.12\""}
+typing-extensions = {version = "*", markers = "python_version < \"3.12\""}
 
 [[package]]
 name = "mypy-boto3-rds"
